@@ -21,6 +21,7 @@ import { AvatarImage } from "@radix-ui/react-avatar";
 import { useUserAuth } from "@/hooks/useUserAuth";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Page() {
   const [query, setQuery] = useState<string>("");
@@ -102,7 +103,7 @@ export default function Page() {
           <div className="flex flex-row items-center gap-2">
             <HandleLogout />
             <Button variant="outline">
-              <a href="/profile">Profile</a>
+              <Link href="/profile">Profile</Link>
             </Button>
             <Avatar className="w-8 h-8">
               <AvatarImage src={user?.image} alt="avatar" />

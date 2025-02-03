@@ -2,10 +2,11 @@ import "@/app/globals.css";
 import HandleLogout from "@/components/handleLogout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { getUserAuth } from "@/hooks/useUserAuth";
+import { useUserAuth } from "@/hooks/useUserAuth";
+import Link from "next/link";
 
 export default function Profile() {
-  const { user } = getUserAuth();
+  const { user } = useUserAuth();
 
   return (
     <div className="flex items-center justify-center h-screen w-screen bg-rich-blue">
@@ -19,7 +20,7 @@ export default function Profile() {
         <text className="text-black">{user?.phone}</text>
         <div>
           <Button variant="outline">
-            <a href="/menu">Menu</a>
+            <Link href="/menu">Menu</Link>
           </Button>
           <HandleLogout />
         </div>
