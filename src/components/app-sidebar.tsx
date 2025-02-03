@@ -70,10 +70,11 @@ export function AppSidebar({
                             <SidebarMenuSubButton
                               asChild
                               onClick={() => {
-                                dataNavMain.navMain[0]?.items[0]?.title ===
-                                "Articles"
-                                  ? fetchArticles()
-                                  : fetchItem(item.url);
+                                if (item.title === "Articles") {
+                                  fetchArticles();
+                                } else {
+                                  fetchItem(item.url);
+                                }
                               }}
                             >
                               <button className="text-white leading-relaxed min-h-[40px]">
