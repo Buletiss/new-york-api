@@ -1,5 +1,5 @@
 import * as React from "react";
-import { GalleryVerticalEnd, Minus, Plus } from "lucide-react";
+import { Minus, Plus } from "lucide-react";
 import { dataNavMain } from "../../public/mocks/dataMock";
 
 import { SearchForm } from "@/components/search-form";
@@ -70,7 +70,8 @@ export function AppSidebar({
                             <SidebarMenuSubButton
                               asChild
                               onClick={() => {
-                                item.title === "Articles"
+                                dataNavMain.navMain[0]?.items[0]?.title ===
+                                "Articles"
                                   ? fetchArticles()
                                   : fetchItem(item.url);
                               }}
