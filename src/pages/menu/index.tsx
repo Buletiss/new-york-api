@@ -23,10 +23,51 @@ import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
+interface Book {
+  book_image: string;
+  title: string;
+  author: string;
+  description: string;
+  publisher: string;
+  buy_links: {
+    url: string;
+    name: string;
+  }[];
+}
+
+interface Article {
+  id: number;
+  title: string;
+  author: string;
+  buy_links: string;
+  buy_lins: {
+    url: string;
+    name: string;
+  };
+  url: string;
+  headline: {
+    main: string;
+  };
+  publisher: string;
+  description: string;
+  book_image: string;
+  abstract: string;
+  web_url: string;
+  type_of_material: string;
+  lead_paragraph: string;
+  pub_date: string;
+  section_name: string;
+  byline: {
+    original: string;
+  };
+  word_count: number;
+  keywords: { value: string }[];
+}
+
 export default function Page() {
   const [query, setQuery] = useState<string>("");
-  const [book, setBook] = useState<any[]>([]);
-  const [articles, setArticles] = useState<any[]>([]);
+  const [book, setBook] = useState<Book[]>([]);
+  const [articles, setArticles] = useState<Article[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const { user } = useUserAuth();
@@ -38,6 +79,7 @@ export default function Page() {
         return;
       }
       const response = await booksApi.get(`${encodeURIComponent(searchQuery)}`);
+      // console.log("response", response.data);
       setBook(response.data.results.books || []);
       setArticles([]);
     } catch (error) {
@@ -52,6 +94,7 @@ export default function Page() {
       setLoading(true);
       const response = await articleApi.get("");
       setArticles(response.data.response.docs || []);
+      console.log("response", response.data.response.docs);
       setBook([]);
     } catch (error) {
       console.log("error article ", error);
@@ -163,8 +206,11 @@ export default function Page() {
             </div>
           ) : articles ? (
             <div className="flex flex-row flex-wrap gap-4 p-4">
-              {articles.map((article) => (
-                <div className="p-6 border border-gray-200 rounded-lg shadow-lg max-w-[30rem] w-full max-h-[40rem] h-screen bg-white">
+              {articles.map((article, index: number) => (
+                <div
+                  key={index}
+                  className="p-6 border border-gray-200 rounded-lg shadow-lg max-w-[30rem] w-full max-h-[40rem] h-screen bg-white"
+                >
                   <h2 className="text-xl font-semibold text-gray-800 mb-4">
                     {article.headline.main}
                   </h2>
@@ -205,9 +251,9 @@ export default function Page() {
                     <ul className="list-none space-y-1 mt-2">
                       {article.keywords
                         .slice(0, 2)
-                        .map((keyword: any, index: any) => (
+                        .map((keywordItems, index: number) => (
                           <li key={index} className="text-sm text-blue-600">
-                            {keyword.value}
+                            {keywordItems.value}
                           </li>
                         ))}
                     </ul>
