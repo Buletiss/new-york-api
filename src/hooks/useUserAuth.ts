@@ -7,6 +7,17 @@ export function useUserAuth() {
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
+  interface User {
+    id: number;
+    username: string;
+    email: string;
+    firstName: string;
+    lastName: string;
+    gender: string;
+    image: string;
+    token: string;
+  }
+
   useEffect(() => {
     async function checkAuth() {
       const userData = await authUser();
