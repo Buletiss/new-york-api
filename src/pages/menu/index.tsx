@@ -18,7 +18,7 @@ import {
 import "@/app/globals.css";
 import HandleLogout from "@/components/handleLogout";
 import { AvatarImage } from "@radix-ui/react-avatar";
-import { getUserAuth } from "@/hooks/getUserAuth";
+import { useUserAuth } from "@/hooks/useUserAuth";
 import { Avatar } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 
@@ -28,7 +28,7 @@ export default function Page() {
   const [articles, setArticles] = useState<any[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
-  const { user } = getUserAuth();
+  const { user } = useUserAuth();
 
   const getBooks = async (searchQuery: string) => {
     try {

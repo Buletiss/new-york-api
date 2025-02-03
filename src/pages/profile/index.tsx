@@ -2,7 +2,7 @@ import "@/app/globals.css";
 import HandleLogout from "@/components/handleLogout";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { getUserAuth } from "@/hooks/getUserAuth";
+import { getUserAuth } from "@/hooks/useUserAuth";
 
 export default function Profile() {
   const { user } = getUserAuth();
