@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export function useUserAuth() {
-  const [user, setUser] = useState<any | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -16,6 +16,7 @@ export function useUserAuth() {
     gender: string;
     image: string;
     token: string;
+    phone: number;
   }
 
   useEffect(() => {
